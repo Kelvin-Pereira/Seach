@@ -16,6 +16,7 @@ public class Candidato {
     @SequenceGenerator(name = "SEQ_CANDIDATO", sequenceName = "SEARCH.SEQ_CANDIDATO", allocationSize = 1)
     private Long id;
 
+    @Column(name = "NOME")
     private String nome;
 
     @Column(name = "PCD", columnDefinition = "CHAR(1) DEFAULT 'N'")
