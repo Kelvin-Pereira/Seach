@@ -1,19 +1,24 @@
 spring:
+  application:
+    name: Seach
+  main:
+    banner-mode: off
   datasource:
-    url: jdbc:h2:mem:meubanco   # banco em memória (apaga ao reiniciar a aplicação)
-    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:db;Mode=Oracle;INIT=CREATE SCHEMA IF NOT EXISTS SEACH
     username: sa
-    password: password
-
+    password: sa
+    driver-class-name: org.h2.Driver
   jpa:
-    hibernate:
-      ddl-auto: update   # opções: create, create-drop, update, validate, none
-    show-sql: true       # exibe SQL no console
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: false
     properties:
       hibernate:
+        show_sql: true
         format_sql: true
-
+        default_schema: SEACH
+    hibernate:
+      ddl-auto: create-drop
   h2:
     console:
-      enabled: true       # habilita o console web do H2
-      path: /h2-console   # caminho para acessar no navegador
+      path: /h2
+      enabled: true
