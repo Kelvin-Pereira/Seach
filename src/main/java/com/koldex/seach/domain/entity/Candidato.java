@@ -8,12 +8,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "CANDIDATO", schema = "SEACH")
+@Table(name = "CANDIDATO", schema = "SEARCH")
 public class Candidato {
 
     @Id
     @GeneratedValue(generator = "SEQ_CANDIDATO", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "SEQ_CANDIDATO", sequenceName = "SEACH.SEQ_CANDIDATO", allocationSize = 1)
+    @SequenceGenerator(name = "SEQ_CANDIDATO", sequenceName = "SEARCH.SEQ_CANDIDATO", allocationSize = 1)
     private Long id;
 
     private String nome;

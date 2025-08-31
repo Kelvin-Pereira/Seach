@@ -4,7 +4,7 @@ spring:
   main:
     banner-mode: off
   datasource:
-    url: jdbc:h2:mem:db;Mode=Oracle;INIT=CREATE SCHEMA IF NOT EXISTS SEACH
+    url: jdbc:h2:mem:db;Mode=Oracle;INIT=CREATE SCHEMA IF NOT EXISTS SEARCH
     username: sa
     password: sa
     driver-class-name: org.h2.Driver
@@ -15,7 +15,7 @@ spring:
       hibernate:
         show_sql: true
         format_sql: true
-        default_schema: SEACH
+        default_schema: SEARCH
     hibernate:
       ddl-auto: create-drop
   h2:

@@ -7,13 +7,13 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@Table(name = "CURSO", schema = "SEACH")
+@Table(name = "CURSO", schema = "SEARCH")
 public class Curso {
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "SEQ_CURSO", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "SEQ_CURSO", sequenceName = "SEACH.SEQ_CURSO", allocationSize = 1)
+    @SequenceGenerator(name = "SEQ_CURSO", sequenceName = "SEARCH.SEQ_CURSO", allocationSize = 1)
     private Long id;
 
     @Column(name = "NOME")

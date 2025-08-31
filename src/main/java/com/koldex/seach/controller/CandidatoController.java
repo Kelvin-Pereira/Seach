@@ -17,7 +17,7 @@ public class CandidatoController {
 
     private final CandidatoRepository candidatoRepository;
 
-    @GetMapping()
+    @GetMapping("/search")
    public ResponseEntity<List<Candidato>> findAll() {
         return ResponseEntity.ok(candidatoRepository.findAll());
     }

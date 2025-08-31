@@ -10,13 +10,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Entity
-@Table(name = "AREA", schema = "SEACH")
+@Table(name = "AREA", schema = "SEARCH")
 public class Area {
 
     @Id
     @Column(name = "ID")
     @GeneratedValue(generator = "SEQ_AREA", strategy = GenerationType.SEQUENCE)
-    @SequenceGenerator(name = "SEQ_AREA", sequenceName = "SEACH.SEQ_AREA", allocationSize = 1)
+    @SequenceGenerator(name = "SEQ_AREA", sequenceName = "SEARCH.SEQ_AREA", allocationSize = 1)
     private Long id;
 
     @Column(name = "NOME")
