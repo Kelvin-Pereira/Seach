@@ -1,14 +1,15 @@
 package com.koldex.seach.domain.dto;
 
+import com.koldex.seach.domain.TurnosEnum;
 import com.koldex.seach.utils.Search;
 import org.springframework.data.domain.Page;
 
 // Representa todas as formas disponiveis de pesquisa de Candidatos
-public interface SumarioCandidatoSearch extends Search<Sumario> {
+public interface SumarioCandidatoSearch extends Search<SumarioCandidatoResponse> {
 
-    Page<Sumario> doCpf(String cpf);
+    Page<SumarioCandidatoResponse> doCpf(String cpf);
 
-    SumarioCandidatoSearch doTurno(String turno);
+    SumarioCandidatoSearch doTurno(TurnosEnum turno);
 
     SumarioCandidatoSearch daEtiniaPretoParto(Boolean etiniaPretoPardo);
 

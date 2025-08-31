@@ -19,9 +19,16 @@ public class Candidato {
     @Column(name = "NOME")
     private String nome;
 
+    @Column(name = "CPF")
+    private String cpf;
+
     @Column(name = "PCD", columnDefinition = "CHAR(1) DEFAULT 'N'")
     @Convert(converter = BooleanSimNaoConverter.class)
     private Boolean pcd;  // Pessoa com Deficiência
+
+    @Column(name = "IND_PCD_VALID", columnDefinition = "CHAR(1) DEFAULT 'N'")
+    @Convert(converter = BooleanSimNaoConverter.class)
+    private Boolean isValid;  // Pessoa com Deficiência
 
     @ManyToOne
     @JoinColumn(name = "CURSO_ID")

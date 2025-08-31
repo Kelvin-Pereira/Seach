@@ -6,7 +6,7 @@ import lombok.Data;
 // Representa as principais informacoes de um candidato
 @Data
 @Builder
-public class Sumario {
+public class SumarioCandidatoResponse {
 
     private Long id;
     private String nome;

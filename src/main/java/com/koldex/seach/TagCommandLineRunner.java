@@ -119,22 +119,30 @@ public class TagCommandLineRunner implements CommandLineRunner {
         // --- CANDIDATOS ---
         Candidato joao = new Candidato();
         joao.setNome("João Silva");
+        joao.setCpf("87399904006");
         joao.setPcd(false);
+        joao.setIsValid(false);
         joao.setCurso(cc);
 
         Candidato maria = new Candidato();
         maria.setNome("Maria Souza");
+        maria.setCpf("90403458056");
         maria.setPcd(true);
+        maria.setIsValid(false);
         maria.setCurso(es);
 
         Candidato carlos = new Candidato();
         carlos.setNome("Carlos Pereira");
+        carlos.setCpf("81595507078");
         carlos.setPcd(false);
+        carlos.setIsValid(false);
         carlos.setCurso(si);
 
         Candidato ana = new Candidato();
         ana.setNome("Ana Costa");
+        ana.setCpf("70942091000");
         ana.setPcd(true);
+        ana.setIsValid(true);
         ana.setCurso(medicina);
 
         // ... Continue para todos os candidatos
