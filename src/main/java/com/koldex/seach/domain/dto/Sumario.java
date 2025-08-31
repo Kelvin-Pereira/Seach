@@ -1,13 +1,17 @@
 package com.koldex.seach.domain.dto;
 
-// Representa as principais informacoes de um candidato
-public interface Sumario {
+import lombok.Builder;
+import lombok.Data;
 
-    Long id();
-    String nome();
-    String turno();
-    String curso();
-    Boolean pcd();
-    Boolean isValidPcd();
+// Representa as principais informacoes de um candidato
+@Data
+@Builder
+public class Sumario {
+
+    private Long id;
+    private String nome;
+    private String curso;
+    private Boolean pcd;
+    private Boolean isValidPcd;
 
 }
