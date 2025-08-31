@@ -1,7 +1,7 @@
 package com.koldex.seach.controller;
 
 import com.koldex.seach.domain.dto.Sumario;
-import com.koldex.seach.domain.dto.SumarioSearch;
+import com.koldex.seach.domain.dto.SumarioCandidatoSearch;
 import com.koldex.seach.domain.dto.SumarioSearchReq;
 import com.koldex.seach.service.CandidatoSearchApi;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ public class CandidatoController {
 
     @GetMapping("/search")
     public ResponseEntity<Page<Sumario>> findSearch(@ModelAttribute SumarioSearchReq req, @PageableDefault Pageable pageable) {
-        SumarioSearch sumario = candidatoSearchApi.sumario();
+        SumarioCandidatoSearch sumario = candidatoSearchApi.sumario();
         if (req.getCpf() != null) {
             return ResponseEntity.ok(sumario.doCpf(req.cpf));
         }

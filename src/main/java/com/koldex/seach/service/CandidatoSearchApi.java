@@ -1,9 +1,9 @@
 package com.koldex.seach.service;
 
-import com.koldex.seach.domain.dto.SumarioSearch;
+import com.koldex.seach.domain.dto.SumarioCandidatoSearch;
 
 public interface CandidatoSearchApi {
 
-    SumarioSearch sumario();
+    SumarioCandidatoSearch sumario();
 
 }

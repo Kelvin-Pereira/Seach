@@ -1,10 +1,11 @@
 package com.koldex.seach.service;
 
 import com.koldex.seach.domain.dto.Sumario;
-import com.koldex.seach.domain.dto.SumarioSearch;
+import com.koldex.seach.domain.dto.SumarioCandidatoSearch;
 import com.koldex.seach.domain.entity.Candidato;
 import com.koldex.seach.repository.CandidatoRepository;
 import com.koldex.seach.repository.CandidatoSpecification;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -12,18 +13,16 @@ import org.springframework.data.jpa.domain.Specification;
 
 import java.util.List;
 
-public class SumarioSearchImpl implements SumarioSearch {
+@RequiredArgsConstructor
+public class SumarioCandidatoSearchImpl implements SumarioCandidatoSearch {
 
     private final CandidatoRepository candidatoRepository;
+
     private String cpf;
     private String turno;
     private Boolean etiniaPretoParto;
     private String email;
     private Boolean pcd;
-
-    public SumarioSearchImpl(CandidatoRepository candidatoRepository) {
-        this.candidatoRepository = candidatoRepository;
-    }
 
     @Override
     public Page<Sumario> doCpf(String cpf) {
@@ -31,25 +30,25 @@ public class SumarioSearchImpl implements SumarioSearch {
     }
 
     @Override
-    public SumarioSearch doTurno(String turno) {
+    public SumarioCandidatoSearch doTurno(String turno) {
         this.turno = turno;
         return this;
     }
 
     @Override
-    public SumarioSearch daEtiniaPretoParto(Boolean etiniaPretoPardo) {
+    public SumarioCandidatoSearch daEtiniaPretoParto(Boolean etiniaPretoPardo) {
         this.etiniaPretoParto = etiniaPretoPardo;
         return this;
     }
 
     @Override
-    public SumarioSearch comEmail(String email) {
+    public SumarioCandidatoSearch comEmail(String email) {
         this.email = email;
         return this;
     }
 
     @Override
-    public SumarioSearch sendoPcd(Boolean pcd) {
+    public SumarioCandidatoSearch sendoPcd(Boolean pcd) {
         this.pcd = pcd;
         return this;
     }

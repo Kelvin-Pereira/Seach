@@ -3,18 +3,17 @@ package com.koldex.seach.domain.dto;
 import com.koldex.seach.utils.Search;
 import org.springframework.data.domain.Page;
 
-public interface SumarioCandidatoSearch extends Search<SumarioCandidato> {
+// Representa todas as formas disponiveis de pesquisa de Candidatos
+public interface SumarioCandidatoSearch extends Search<Sumario> {
 
-    Page<SumarioCandidato> comCpf(String cpf);
+    Page<Sumario> doCpf(String cpf);
 
-    Page<SumarioCandidato> comEmail(String email);
+    SumarioCandidatoSearch doTurno(String turno);
 
-    SumarioCandidatoSearch pcd(Boolean pcd);
+    SumarioCandidatoSearch daEtiniaPretoParto(Boolean etiniaPretoPardo);
 
-    SumarioCandidatoSearch turno(String turno);
+    SumarioCandidatoSearch comEmail(String email);
 
-    SumarioCandidatoSearch comArea(Long idArea);
-
-    SumarioCandidatoSearch pretoPardo(Boolean pretoPardo);
+    SumarioCandidatoSearch sendoPcd(Boolean pcd);
 
 }

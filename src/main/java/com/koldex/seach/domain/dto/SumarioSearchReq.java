@@ -6,7 +6,7 @@ import org.springframework.data.domain.Sort;
 import java.util.function.BiFunction;
 
 @Data
-public class SumarioSearchReq implements BiFunction<SumarioSearch, Sort, SumarioSearch> {
+public class SumarioSearchReq implements BiFunction<SumarioCandidatoSearch, Sort, SumarioCandidatoSearch> {
 
     // campos da tela (Filtro)
     public String cpf;
@@ -16,8 +16,8 @@ public class SumarioSearchReq implements BiFunction<SumarioSearch, Sort, Sumario
 
 
     @Override
-    public SumarioSearch apply(SumarioSearch search, Sort orders) {
-        SumarioSearch sumarios = search;
+    public SumarioCandidatoSearch apply(SumarioCandidatoSearch search, Sort orders) {
+        SumarioCandidatoSearch sumarios = search;
 
         if (turrno != null) {
             sumarios = sumarios.doTurno(turrno);
