@@ -3,7 +3,7 @@ package com.koldex.seach.utils;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
-public interface Search<T> {
+public interface SearchFilter<T> {
 
     Page<T> search(Pageable pageable);
 

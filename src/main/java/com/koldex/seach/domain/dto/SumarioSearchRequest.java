@@ -7,7 +7,7 @@ import org.springframework.data.domain.Sort;
 import java.util.function.BiFunction;
 
 @Data
-public class SumarioSearchRequest implements BiFunction<SumarioCandidatoSearch, Sort, SumarioCandidatoSearch> {
+public class SumarioSearchRequest implements BiFunction<SumarioCandidatoSearchFilter, Sort, SumarioCandidatoSearchFilter> {
 
     // campos da tela (Filtro)
     public String cpf;
@@ -17,8 +17,8 @@ public class SumarioSearchRequest implements BiFunction<SumarioCandidatoSearch, 
 
 
     @Override
-    public SumarioCandidatoSearch apply(SumarioCandidatoSearch search, Sort orders) {
-        SumarioCandidatoSearch sumarios = search;
+    public SumarioCandidatoSearchFilter apply(SumarioCandidatoSearchFilter search, Sort orders) {
+        SumarioCandidatoSearchFilter sumarios = search;
 
         if (turno != null) {
             sumarios = sumarios.doTurno(turno);

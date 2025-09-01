@@ -2,7 +2,7 @@ package com.koldex.seach.repository;
 
 import com.koldex.seach.domain.TurnosEnum;
 import com.koldex.seach.domain.dto.SumarioCandidatoResponse;
-import com.koldex.seach.domain.dto.SumarioCandidatoSearch;
+import com.koldex.seach.domain.dto.SumarioCandidatoSearchFilter;
 import com.koldex.seach.domain.entity.Candidato;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -14,7 +14,7 @@ import org.springframework.data.domain.Pageable;
 import java.util.*;
 
 @RequiredArgsConstructor
-public class CandidatoSearchBuilder implements SumarioCandidatoSearch {
+public class CandidatoSearchFilterBuilder implements SumarioCandidatoSearchFilter {
 
     private final EntityManager em;
     String baseQuery = "SELECT c FROM Candidato c";
@@ -31,7 +31,7 @@ public class CandidatoSearchBuilder implements SumarioCandidatoSearch {
     }
 
     @Override
-    public SumarioCandidatoSearch doTurno(TurnosEnum turno) {
+    public SumarioCandidatoSearchFilter doTurno(TurnosEnum turno) {
         switch (turno) {
             case MATUTINO:
                 where.add("c.curso.area.indMatutino = true");
@@ -47,17 +47,17 @@ public class CandidatoSearchBuilder implements SumarioCandidatoSearch {
     }
 
     @Override
-    public SumarioCandidatoSearch daEtiniaPretoParto(Boolean etiniaPretoPardo) {
+    public SumarioCandidatoSearchFilter daEtiniaPretoParto(Boolean etiniaPretoPardo) {
         return null;
     }
 
     @Override
-    public SumarioCandidatoSearch comEmail(String email) {
+    public SumarioCandidatoSearchFilter comEmail(String email) {
         return null;
     }
 
     @Override
-    public SumarioCandidatoSearch sendoPcd(Boolean pcd) {
+    public SumarioCandidatoSearchFilter sendoPcd(Boolean pcd) {
         where.add("c.pcd = :pcd");
         params.put("pcd", pcd);
         return this;
