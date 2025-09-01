@@ -23,12 +23,12 @@ public class CandidatoController {
     private final CandidatoSearchApi candidatoSearchApi;
 
     @GetMapping("/search")
-    public ResponseEntity<Page<SumarioCandidatoResponse>> findSearch(@ModelAttribute SumarioSearchRequest req, @PageableDefault Pageable pageable) {
+    public ResponseEntity<Page<SumarioCandidatoResponse>> findSearch(@ModelAttribute SumarioSearchRequest req, @PageableDefault(size = 2) Pageable pageable) {
         SumarioCandidatoSearchFilter sumario = candidatoSearchApi.sumario();
         if (req.getCpf() != null) {
             return ResponseEntity.ok(sumario.doCpf(req.getCpf()));
         }
-        return ResponseEntity.ok(req.apply(sumario, pageable.getSort()).search());
+        return ResponseEntity.ok(req.apply(sumario, pageable.getSort()).search(pageable));
     }
 
 }
