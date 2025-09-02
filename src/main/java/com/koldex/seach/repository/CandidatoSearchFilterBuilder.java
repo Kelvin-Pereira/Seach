@@ -63,7 +63,7 @@ public class CandidatoSearchFilterBuilder implements CandidatoSearchFilter {
     }
 
     @Override
-    public Page<CandidatoResponse> search(Pageable pageable) {
+    public List<CandidatoResponse> apply() {
         StringBuilder jpql = new StringBuilder(baseQuery);
 
         if (!where.isEmpty()) {
@@ -74,16 +74,10 @@ public class CandidatoSearchFilterBuilder implements CandidatoSearchFilter {
         TypedQuery<Candidato> query = em.createQuery(jpql.toString(), Candidato.class);
         params.forEach(query::setParameter);
 
-        // paginação
-        if (pageable.isPaged()) {
-            query.setFirstResult((int) pageable.getOffset());
-            query.setMaxResults(pageable.getPageSize());
-        }
-
         List<Candidato> resultList = query.getResultList();
 
         // mapeando para DTO
-        List<CandidatoResponse> dtos = resultList.stream()
+        return resultList.stream()
                 .map(c -> CandidatoResponse.builder()
                         .id(c.getId())
                         .nome(c.getNome())
@@ -93,23 +87,6 @@ public class CandidatoSearchFilterBuilder implements CandidatoSearchFilter {
                         .build()
                 )
                 .toList();
-
-        // contar total (para o Page)
-        StringBuilder countQuery = new StringBuilder("SELECT COUNT(c) FROM Candidato c");
-        if (!where.isEmpty()) {
-            countQuery.append(" WHERE ").append(String.join(" AND ", where));
-        }
-
-        TypedQuery<Long> count = em.createQuery(countQuery.toString(), Long.class);
-        params.forEach(count::setParameter);
-        Long total = count.getSingleResult();
-
-        return new PageImpl<>(dtos, pageable, total);
     }
 
-
-    @Override
-    public Page<CandidatoResponse> search() {
-        return search(Pageable.unpaged());
-    }
 }
