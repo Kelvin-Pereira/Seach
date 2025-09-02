@@ -1,20 +1,19 @@
 package com.koldex.seach.domain.dto;
 
 import com.koldex.seach.domain.TurnosEnum;
-import org.springframework.data.domain.Sort;
 
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public record SumarioSearchRequest(
         String cpf,
         String email,
         Boolean pcd,
         TurnosEnum turno
-) implements BiFunction<SumarioCandidatoSearchFilter, Sort, SumarioCandidatoSearchFilter> {
+) implements Function<CandidatoSearchFilter, CandidatoSearchFilter> {
 
     @Override
-    public SumarioCandidatoSearchFilter apply(SumarioCandidatoSearchFilter search, Sort orders) {
-        SumarioCandidatoSearchFilter sumarios = search;
+    public CandidatoSearchFilter apply(CandidatoSearchFilter search) {
+        CandidatoSearchFilter sumarios = search;
 
         if (turno != null) {
             sumarios = sumarios.doTurno(turno);

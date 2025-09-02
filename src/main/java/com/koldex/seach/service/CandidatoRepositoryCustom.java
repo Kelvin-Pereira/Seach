@@ -1,6 +1,6 @@
 package com.koldex.seach.service;
 
-import com.koldex.seach.domain.dto.SumarioCandidatoSearchFilter;
+import com.koldex.seach.domain.dto.CandidatoSearchFilter;
 import com.koldex.seach.repository.CandidatoSearchFilterBuilder;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -13,7 +13,7 @@ public class CandidatoRepositoryCustom implements CandidatoSearchApi {
     private EntityManager em;
 
     @Override
-    public SumarioCandidatoSearchFilter sumario() {
-        return  new CandidatoSearchFilterBuilder(em);
+    public CandidatoSearchFilter filter() {
+        return new CandidatoSearchFilterBuilder(em);
     }
 }

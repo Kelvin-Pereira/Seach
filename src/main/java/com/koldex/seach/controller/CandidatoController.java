@@ -1,8 +1,8 @@
 package com.koldex.seach.controller;
 
-import com.koldex.seach.domain.dto.SumarioCandidatoResponse;
+import com.koldex.seach.domain.dto.CandidatoResponse;
 
-import com.koldex.seach.domain.dto.SumarioCandidatoSearchFilter;
+import com.koldex.seach.domain.dto.CandidatoSearchFilter;
 import com.koldex.seach.domain.dto.SumarioSearchRequest;
 import com.koldex.seach.service.CandidatoSearchApi;
 import lombok.RequiredArgsConstructor;
@@ -23,12 +23,12 @@ public class CandidatoController {
     private final CandidatoSearchApi candidatoSearchApi;
 
     @GetMapping("/search")
-    public ResponseEntity<Page<SumarioCandidatoResponse>> findSearch(@ModelAttribute SumarioSearchRequest req, @PageableDefault(size = 2) Pageable pageable) {
-        SumarioCandidatoSearchFilter sumario = candidatoSearchApi.sumario();
+    public ResponseEntity<Page<CandidatoResponse>> findSearch(@ModelAttribute SumarioSearchRequest req, @PageableDefault(size = 2) Pageable pageable) {
+        CandidatoSearchFilter filter = candidatoSearchApi.filter();
         if (req.cpf() != null) {
-            return ResponseEntity.ok(sumario.doCpf(req.cpf()));
+            return ResponseEntity.ok(filter.doCpf(req.cpf()));
         }
-        return ResponseEntity.ok(req.apply(sumario, pageable.getSort()).search(pageable));
+        return ResponseEntity.ok(req.apply(filter).search(pageable));
     }
 
 }

@@ -1,8 +1,8 @@
 package com.koldex.seach.repository;
 
 import com.koldex.seach.domain.TurnosEnum;
-import com.koldex.seach.domain.dto.SumarioCandidatoResponse;
-import com.koldex.seach.domain.dto.SumarioCandidatoSearchFilter;
+import com.koldex.seach.domain.dto.CandidatoResponse;
+import com.koldex.seach.domain.dto.CandidatoSearchFilter;
 import com.koldex.seach.domain.entity.Candidato;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
@@ -14,24 +14,23 @@ import org.springframework.data.domain.Pageable;
 import java.util.*;
 
 @RequiredArgsConstructor
-public class CandidatoSearchFilterBuilder implements SumarioCandidatoSearchFilter {
+public class CandidatoSearchFilterBuilder implements CandidatoSearchFilter {
 
     private final EntityManager em;
     String baseQuery = "SELECT c FROM Candidato c";
 
     private Set<String> where = new LinkedHashSet<>();
-    private Map<String, Object> params = new HashMap<>();
-
+    private final Map<String, Object> params = new HashMap<>();
 
     @Override
-    public Page<SumarioCandidatoResponse> doCpf(String cpf) {
+    public Page<CandidatoResponse> doCpf(String cpf) {
         where = Collections.singleton("c.cpf=:cpf");
         params.put("cpf", cpf);
         return search(Pageable.unpaged());
     }
 
     @Override
-    public SumarioCandidatoSearchFilter doTurno(TurnosEnum turno) {
+    public CandidatoSearchFilter doTurno(TurnosEnum turno) {
         switch (turno) {
             case MATUTINO:
                 where.add("c.curso.area.indMatutino = true");
@@ -47,24 +46,24 @@ public class CandidatoSearchFilterBuilder implements SumarioCandidatoSearchFilte
     }
 
     @Override
-    public SumarioCandidatoSearchFilter daEtiniaPretoParto(Boolean etiniaPretoPardo) {
+    public CandidatoSearchFilter daEtiniaPretoParto(Boolean etiniaPretoPardo) {
         return null;
     }
 
     @Override
-    public SumarioCandidatoSearchFilter comEmail(String email) {
+    public CandidatoSearchFilter comEmail(String email) {
         return null;
     }
 
     @Override
-    public SumarioCandidatoSearchFilter sendoPcd(Boolean pcd) {
+    public CandidatoSearchFilter sendoPcd(Boolean pcd) {
         where.add("c.pcd = :pcd");
         params.put("pcd", pcd);
         return this;
     }
 
     @Override
-    public Page<SumarioCandidatoResponse> search(Pageable pageable) {
+    public Page<CandidatoResponse> search(Pageable pageable) {
         StringBuilder jpql = new StringBuilder(baseQuery);
 
         if (!where.isEmpty()) {
@@ -84,8 +83,8 @@ public class CandidatoSearchFilterBuilder implements SumarioCandidatoSearchFilte
         List<Candidato> resultList = query.getResultList();
 
         // mapeando para DTO
-        List<SumarioCandidatoResponse> dtos = resultList.stream()
-                .map(c -> SumarioCandidatoResponse.builder()
+        List<CandidatoResponse> dtos = resultList.stream()
+                .map(c -> CandidatoResponse.builder()
                         .id(c.getId())
                         .nome(c.getNome())
                         .curso(c.getCurso() != null ? c.getCurso().getNome() : null)
@@ -110,7 +109,7 @@ public class CandidatoSearchFilterBuilder implements SumarioCandidatoSearchFilte
 
 
     @Override
-    public Page<SumarioCandidatoResponse> search() {
+    public Page<CandidatoResponse> search() {
         return search(Pageable.unpaged());
     }
 }
