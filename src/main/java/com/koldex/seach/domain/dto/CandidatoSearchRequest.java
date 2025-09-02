@@ -4,7 +4,7 @@ import com.koldex.seach.domain.TurnosEnum;
 
 import java.util.function.Function;
 
-public record SumarioSearchRequest(
+public record CandidatoSearchRequest(
         String cpf,
         String email,
         Boolean pcd,
